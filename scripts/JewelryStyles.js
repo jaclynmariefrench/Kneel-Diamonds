@@ -1,11 +1,15 @@
-import { getStyles } from "./database.js";
+import { getStyles, setStyle } from "./database.js";
 
 const styles = getStyles();
 
-document.addEventListener("change", (event) => {});
+document.addEventListener("change", (event) => {
+  if (event.target.name === "style") {
+    setStyle(parseInt(event.target.value));
+  }
+});
 
 export const JewelryStyles = () => {
-let html = ""
+  let html = "";
   // Use .map() for converting objects to <li> elements
   const listItemsArray = styles.map((style) => {
     return `<div>
@@ -14,6 +18,6 @@ let html = ""
   });
   // Join all of the strings in the array into a single string
 
-  html += listItemsArray.join(" ") ;
+  html += listItemsArray.join(" ");
   return html;
 };
