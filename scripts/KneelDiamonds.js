@@ -5,11 +5,16 @@ import { Metals } from "./Metals.js";
 import { Orders } from "./Orders.js";
 import { CustomizeOrder } from "./customize.js"
 
-document.addEventListener("click", (clickEvent) => {
-  const itemClicked = clickEvent.target;
-  if (itemClicked.id.startsWith("orderButton")) {
-    addCustomOrder();
-  }
+document.addEventListener(
+  "click", 
+  (clickEvent) => {
+      const itemClicked = clickEvent.target;
+      if (itemClicked.id.startsWith("orderButton")) {
+        const order = addCustomOrder();
+            if(!order) {
+            window.alert("Please choose an option from each category! :)")
+            }
+      }
 });
 
 export const KneelDiamonds = () => {
