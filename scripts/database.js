@@ -25,17 +25,32 @@ const database = {
     { id: 4, metal: "Platinum", price: 795.45 },
     { id: 5, metal: "Palladium", price: 1241.0 },
   ],
+  
   customOrders: [
     {
       id: 1,
       metalId: 3,
       sizeId: 2,
       styleId: 3,
+      customizeId: 1,
       timestamp: 1614659931693,
     },
   ],
+  
   orderBuilder: {},
+  
+  customize: [
+    { id: 1, type: "ring", priceIncrease: 1},
+    { id: 2, type: "earring", priceIncrease: 2},
+    { id: 3, type: "necklace", priceIncrease: 4},
+  ],
+  
 };
+
+// NECKLACE & EARRINGS
+export const getCustomize = () => {
+  return [...database.customize];
+}
 
 export const getMetals = () => {
   return [...database.metals];
@@ -61,6 +76,9 @@ export const setSize = (id) => {
 export const setStyle = (id) => {
   database.orderBuilder.styleId = id;
 };
+export const setCustomize = (id) => {
+  database.orderBuilder.customizeId = id;
+}
 
 export const addCustomOrder = () => {
   // copy of current state of the order

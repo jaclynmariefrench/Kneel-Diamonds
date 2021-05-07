@@ -1,17 +1,20 @@
-import { getMetals, getOrders, getSizes, getStyles } from "./database.js";
+import { getCustomize, getMetals, getOrders, getSizes, getStyles } from "./database.js";
 
 const buildOrderListItem = (order) => {
   const metals = getMetals();
   const sizes = getSizes();
   const styles = getStyles();
+  const customize = getCustomize();
 
+  
   // DO THE FIND METHOD FOR SIZES AND STYLES
   const foundMetal = metals.find((metal) => metal.id === order.metalId);
   const foundSizes = sizes.find((size) => size.id === order.sizeId);
   const foundStyles = styles.find((style) => style.id === order.styleId);
+  const foundCustomize = customize.find((custom)=> custom.id === order.customizeId)
 
   // ADD SIZES AND STYLES
-  const totalCost = foundMetal.price + foundSizes.price + foundStyles.price;
+  const totalCost = (foundMetal.price + foundSizes.price + foundStyles.price) * foundCustomize.priceIncrease;
 
   const costString = totalCost.toLocaleString("en-US", {
     style: "currency",
